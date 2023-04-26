@@ -12,15 +12,39 @@ node {
 pipeline {
     agent any
     stages {
+       
         stage('deploy') {
             input {
                 message "Should we continue?"
                 ok "Yes"
             }
-            
+           
             steps {
                 sh "echo 'describe your deployment' "
             }
         }
+        stage('Push Image to Docker Hub'){
+            steps{
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'github-id', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {    
+                        sh '''
+                       
+                        git checkout master
+                        git merge origin/dev
+             
+                        '''
+                    }
+                }
+            }
+        }
+
+         stage('final') {
+           
+           
+            steps {
+                sh "echo 'Final Step' "
+            }
+        }
     }
 }
+
