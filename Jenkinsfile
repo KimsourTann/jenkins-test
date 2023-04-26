@@ -31,7 +31,7 @@ pipeline {
                        
                         git checkout master
                         git merge origin/dev
-             
+                        git push -f origin master
                         '''
                     }
                 }
