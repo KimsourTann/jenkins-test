@@ -28,7 +28,7 @@ pipeline {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'github-id', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {    
                         sh '''
-                        git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/$GIT_USERNAME/jenkins-test.git
+                        git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/jenkins-test.git
                         git checkout master
                         git merge origin/dev
                         git push -f origin master
