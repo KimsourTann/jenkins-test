@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'branch ${GIT_BRANCH}'
+                echo 'branch ${GIT_BRANCH}'
                 sh 'git checkout master'
                 sh 'printenv'
             }
