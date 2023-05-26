@@ -1,3 +1,6 @@
+String getRepoName(){
+    return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
+}
 pipeline {
     agent any
 
@@ -6,9 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                
-                sh 'git checkout master'
-                 sh '''git checkout ${GIT_BRANCH}'''
-                sh 'printenv'
+                echo getRepoName()
             }
         }
     }
