@@ -1,6 +1,7 @@
 String getRepoName(){
     return scm.getUserRemoteConfigs()[0].getUrl().tokenize('/')[3].split("\\.")[0]
 }
+def NAME=getRepoName()
 pipeline {
     agent any
 
@@ -9,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                
-                echo getRepoName()
+                echo NAME+'Hello'
             }
         }
     }
